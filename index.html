@@ -1,88 +1,78 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juan Martín Ortiz | Consciencia Humana</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Playfair Display for authoritative headings, Inter for high legibility body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --violet-deep: #3A1078;
-            --pink-vibrant: #E84393;
-            --yellow-warm: #FDCB6E;
-            --green-emerald: #00B894;
-            --bg-warm: #FDF9F3;
+            --bg-body: #FDFBF7; /* Off-white, editorial feel */
+            --text-primary: #1C1C1E; /* Rich charcoal */
+            --text-secondary: #4B5563; /* Slate 600 */
+            --accent-dark: #0F172A; /* Slate 900 / Navy */
+            --accent-gold: #B49358; /* Muted elegant gold */
         }
 
         body { 
-            font-family: 'Lato', sans-serif; 
-            background-color: var(--bg-warm);
-            color: #2d3436;
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-body);
+            color: var(--text-primary);
             overflow-x: hidden;
+            line-height: 1.7;
         }
 
-        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, .font-serif { 
+            font-family: 'Playfair Display', serif; 
+        }
 
-        .text-violet-brand { color: var(--violet-deep); }
-        .text-pink-brand { color: var(--pink-vibrant); }
+        .text-accent { color: var(--accent-dark); }
+        .text-gold { color: var(--accent-gold); }
+        .bg-accent { background-color: var(--accent-dark); }
+        .bg-gold { background-color: var(--accent-gold); }
         
-        .glass-nav {
-            background: rgba(253, 249, 243, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(58, 16, 120, 0.05);
+        /* Clean Navigation */
+        .solid-nav {
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Subliminal Phrases Layer - Saint Germain / I AM */
-        .iam-mantra {
-            position: absolute;
-            font-size: 0.65rem;
-            color: var(--violet-deep);
-            opacity: 0.04; /* Casi imperceptible pero presente */
-            pointer-events: none;
-            user-select: none;
-            font-weight: 300;
-            letter-spacing: 2px;
-            white-space: nowrap;
-            z-index: 1;
-        }
-
-        .petal {
-            position: absolute;
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            background: linear-gradient(45deg, var(--violet-deep), var(--pink-vibrant));
-            opacity: 0.03;
-            z-index: 0;
-            animation: morph 20s linear infinite;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-            67% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 40%; }
-            100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-        }
-
         .cta-button {
-            background-color: var(--pink-vibrant);
+            background-color: var(--accent-dark);
             color: white;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.05em;
         }
         .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(232, 67, 147, 0.3);
+            background-color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(15, 23, 42, 0.3);
+        }
+        
+        .cta-button-outline {
+            border: 1px solid var(--accent-dark);
+            color: var(--accent-dark);
+            transition: all 0.3s ease;
+        }
+        .cta-button-outline:hover {
+            background-color: var(--accent-dark);
+            color: white;
         }
 
         .video-wrapper {
@@ -90,9 +80,8 @@
             padding-bottom: 56.25%; /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
-            border-radius: 2.5rem;
-            background: #000;
-            box-shadow: 0 25px 50px -12px rgba(58, 16, 120, 0.25);
+            background: #f1f1f1;
+            border: 1px solid rgba(0,0,0,0.05);
         }
         .video-wrapper iframe {
             position: absolute;
@@ -103,220 +92,262 @@
             border: 0;
         }
 
-        .hero-image-container {
-            position: relative;
-            border-radius: 3rem;
-            overflow: hidden;
-            box-shadow: 0 30px 60px -15px rgba(0,0,0,0.3);
+        .editorial-border {
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
     </style>
 </head>
-<body>
-
-    <!-- Subtle IAM Layer (Instrucción del YO SOY en español) -->
-    <div class="iam-mantra" style="top: 10%; left: 2%;">YO SOY LA RESURRECCIÓN Y LA VIDA</div>
-    <div class="iam-mantra" style="top: 25%; right: 5%;">YO SOY LA PUERTA ABIERTA QUE NADIE PUEDE CERRAR</div>
-    <div class="iam-mantra" style="top: 50%; left: 8%;">YO SOY LA PRESENCIA ILUMINADORA</div>
-    <div class="iam-mantra" style="top: 70%; right: 10%;">YO SOY LA ACTIVIDAD CUMPLIDA</div>
-    <div class="iam-mantra" style="bottom: 5%; left: 20%;">YO SOY LA LUZ QUE NUNCA FALLA</div>
+<body class="antialiased font-light selection:bg-slate-200 selection:text-slate-900">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav">
+    <nav class="fixed w-full z-50 solid-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center space-x-3">
-                    <svg width="40" height="40" viewBox="0 0 40 40" style="fill:none; stroke-width:2.5; stroke-linecap:round;">
-                        <circle cx="20" cy="20" r="18" stroke="var(--violet-deep)" stroke-dasharray="2 4" opacity="0.2" />
-                        <path d="M20 5 C28 5 35 12 35 20 C35 28 28 35 20 35" stroke="var(--violet-deep)" />
-                        <path d="M20 10 C15 10 10 15 10 20 C10 25 15 30 20 30" stroke="var(--pink-vibrant)" />
-                        <circle cx="20" cy="20" r="3" fill="var(--violet-deep)" stroke="none" />
-                    </svg>
-                    <div class="flex-shrink-0 font-bold text-xl tracking-tighter text-violet-brand">
-                        JUAN MARTÍN <span class="text-pink-brand">ORTIZ</span>
-                    </div>
+                <div class="flex-shrink-0">
+                    <a href="#inicio" class="text-2xl font-serif font-semibold tracking-wide text-accent">
+                        Juan Martín Ortiz<span class="text-gold">.</span>
+                    </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="#inicio" class="text-sm font-semibold hover:text-pink-brand transition-colors">Inicio</a>
-                    <a href="#trayectoria" class="text-sm font-semibold hover:text-pink-brand transition-colors">Trayectoria</a>
-                    <a href="#multimedia" class="text-sm font-semibold hover:text-pink-brand transition-colors">Multimedia</a>
-                    <a href="#contacto" class="cta-button px-6 py-2.5 rounded-full text-sm font-bold shadow-md">Agendar Sesión</a>
+                    <a href="#inicio" class="text-sm tracking-widest uppercase hover:text-gold transition-colors text-slate-600">Inicio</a>
+                    <a href="#trayectoria" class="text-sm tracking-widest uppercase hover:text-gold transition-colors text-slate-600">Trayectoria</a>
+                    <a href="#enfoque" class="text-sm tracking-widest uppercase hover:text-gold transition-colors text-slate-600">Enfoque</a>
+                    <a href="#contacto" class="text-sm tracking-widest uppercase text-accent font-semibold flex items-center gap-2 hover:text-gold transition-colors">
+                        Contacto <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="inicio" class="relative pt-32 pb-16 overflow-hidden min-h-screen flex items-center">
-        <div class="petal w-[600px] h-[600px] -top-20 -right-20"></div>
-        <div class="petal w-[400px] h-[400px] bottom-10 -left-10" style="animation-delay: -5s; opacity: 0.02;"></div>
-        
+    <header id="inicio" class="relative pt-32 pb-20 lg:pb-32 lg:pt-48 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-            <div class="lg:flex lg:items-center gap-20">
-                <div class="lg:w-1/2 reveal">
-                    <span class="inline-block px-4 py-1.5 rounded-full bg-violet-100 text-violet-brand text-xs font-bold uppercase tracking-widest mb-6 italic">YO SOY LA CONSCIENCIA EN ACCIÓN</span>
-                    <h1 class="text-5xl md:text-7xl font-bold text-violet-brand leading-[1.1] mb-8">
-                        Liderazgo con <span class="text-pink-brand italic">alma</span> y resultados.
+            <div class="lg:flex lg:items-center gap-16 lg:gap-24">
+                <div class="lg:w-5/12 reveal mt-8 lg:mt-0 order-2 lg:order-1">
+                    <p class="text-gold font-semibold uppercase tracking-[0.2em] text-xs mb-6 inline-block">Consciencia Humana</p>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif text-accent leading-tight mb-8">
+                        Liderazgo <br>
+                        <span class="italic text-slate-600 font-normal">con propósito</span> y resultados.
                     </h1>
-                    <p class="text-xl text-slate-600 leading-relaxed mb-10">
-                        Ingeniero de formación, coach de corazón. Acompaño procesos de transformación humana y organizacional desde la profundidad del ser.
+                    <p class="text-lg text-slate-600 mb-10 leading-relaxed font-light">
+                        Ingeniero de formación, coach de corazón. Acompaño procesos de transformación humana y organizacional combinando la precisión analítica con la profundidad del ser.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contacto" class="cta-button px-10 py-5 rounded-2xl font-bold text-center">Contactar ahora</a>
-                        <a href="#trayectoria" class="px-10 py-5 rounded-2xl font-bold border-2 border-violet-900/10 text-violet-brand text-center hover:bg-violet-50 transition-all">Mi trayectoria</a>
+                        <a href="#contacto" class="cta-button px-8 py-4 text-sm uppercase tracking-widest text-center">Agendar Sesión</a>
+                        <a href="#enfoque" class="cta-button-outline px-8 py-4 text-sm uppercase tracking-widest text-center">Conoce mi enfoque</a>
                     </div>
                 </div>
                 
-                <div class="lg:w-1/2 mt-12 lg:mt-0 reveal">
-                    <div class="hero-image-container">
-                        <!-- Imagen inspirada en las fotos de la audiencia compartidas por el usuario -->
-                        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1200" 
-                             alt="Juan Martín Ortiz en Conferencia" 
-                             class="w-full h-auto object-cover min-h-[450px]"
-                             onerror="this.src='https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=1200'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-violet-950/60 to-transparent"></div>
-                        <div class="absolute bottom-10 left-10 text-white">
-                            <p class="text-xs font-bold uppercase tracking-[0.3em] mb-2 opacity-80">Conferencista Internacional</p>
-                            <h3 class="text-3xl font-bold">Transformando Audiencias</h3>
+                <div class="lg:w-7/12 order-1 lg:order-2 reveal">
+                    <div class="relative">
+                        <!-- Elegant Author Portrait Aspect -->
+                        <div class="aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/3] overflow-hidden bg-slate-100">
+                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1200" 
+                                 alt="Juan Martín Ortiz" 
+                                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                                 onerror="this.src='https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=1200'">
                         </div>
+                        <!-- Subtle decorative block -->
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gold/10 -z-10"></div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Trayectoria Dual -->
-    <section id="trayectoria" class="py-32 bg-white relative overflow-hidden">
-        <div class="iam-mantra" style="top: 20%; left: 50%; opacity: 0.02;">YO SOY EL YO SOY</div>
+    <!-- Quote Section -->
+    <section class="py-24 bg-white editorial-border">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <i class="fa-solid fa-quote-left text-3xl text-slate-200 mb-6"></i>
+            <h2 class="text-2xl md:text-4xl font-serif text-slate-800 leading-snug italic mb-8">
+                "La verdadera libertad en las organizaciones y en la vida se conquista cuando nos atrevemos a mirar hacia adentro."
+            </h2>
+            <p class="text-sm font-semibold tracking-widest uppercase text-slate-500">— Juan Martín Ortiz</p>
+        </div>
+    </section>
+
+    <!-- Trayectoria (Experience) -->
+    <section id="trayectoria" class="py-32 bg-[var(--bg-body)] editorial-border">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-4xl font-bold text-violet-brand mb-4">Experiencia que Resuena</h2>
-                <div class="w-24 h-1 bg-pink-brand mx-auto rounded-full"></div>
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl lg:text-5xl font-serif text-accent mb-6">Experiencia Integrada</h2>
+                <div class="w-12 h-[1px] bg-gold mx-auto"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="p-10 bg-slate-50 rounded-[3rem] reveal shadow-sm hover:shadow-xl transition-shadow border-b-8 border-violet-brand">
-                    <div class="w-14 h-14 bg-violet-brand text-white rounded-2xl flex items-center justify-center mb-8">
-                        <i class="fa-solid fa-briefcase text-xl"></i>
+            <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+                <div class="reveal">
+                    <div class="text-gold mb-6">
+                        <i class="fa-solid fa-building text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-violet-brand mb-4">Mundo Corporativo</h3>
-                    <p class="text-slate-600 mb-6 font-semibold italic">PepsiCo & Rexam</p>
-                    <p class="text-slate-500 mb-6">Liderazgo de supply chain en Cono Sur, gestionando equipos de 350+ personas y optimizando operaciones de alta complejidad.</p>
+                    <h3 class="text-2xl font-serif text-accent mb-2">Mundo Corporativo</h3>
+                    <p class="text-sm text-slate-400 font-semibold tracking-widest uppercase mb-6">PepsiCo & Rexam</p>
+                    <p class="text-slate-600 leading-relaxed">
+                        Liderazgo estratégico en Supply Chain para el Cono Sur. Gestión de equipos multidisciplinarios de más de 350 personas, optimizando operaciones de alta complejidad logística y productiva mediante enfoques basados en el rendimiento humano y la eficiencia técnica.
+                    </p>
                 </div>
 
-                <div class="p-10 bg-slate-50 rounded-[3rem] reveal shadow-sm hover:shadow-xl transition-shadow border-b-8 border-yellow-warm" style="transition-delay: 0.2s;">
-                    <div class="w-14 h-14 bg-yellow-warm text-violet-brand rounded-2xl flex items-center justify-center mb-8">
-                        <i class="fa-solid fa-landmark text-xl"></i>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <div class="text-gold mb-6">
+                        <i class="fa-solid fa-institution text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-violet-brand mb-4">Gestión Pública</h3>
-                    <p class="text-slate-600 mb-6 font-semibold italic">Gobierno de la Ciudad (GCBA)</p>
-                    <p class="text-slate-500 mb-6">Innovación en la atención vecinal, transformando la experiencia ciudadana a través de procesos ágiles y humanos.</p>
+                    <h3 class="text-2xl font-serif text-accent mb-2">Gestión Pública</h3>
+                    <p class="text-sm text-slate-400 font-semibold tracking-widest uppercase mb-6">Gobierno de la Ciudad de Buenos Aires</p>
+                    <p class="text-slate-600 leading-relaxed">
+                        Innovación aplicada a la atención y servicio vecinal. Liderazgo en la transformación de la experiencia ciudadana integrando procesos ágiles, tecnología aplicada y, fundamentalmente, humanización del servicio público a gran escala.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodología / Enfoque (Methodology) -->
+    <section id="enfoque" class="py-32 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="lg:flex lg:justify-between lg:items-end mb-20 reveal">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl lg:text-5xl font-serif mb-6">Enfoque de Trabajo</h2>
+                    <p class="text-slate-400 text-lg font-light leading-relaxed">
+                        Tres pilares fundamentales sobre los que estructuro cada intervención, combinando herramientas analíticas con metodologías del desarrollo del potencial humano.
+                    </p>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="w-24 h-[1px] bg-slate-600"></div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12 border-t border-slate-700 pt-16">
+                <div class="reveal">
+                    <span class="text-gold text-lg font-serif mb-4 block">01</span>
+                    <h4 class="text-xl font-semibold mb-4 text-white">Diseño Humano</h4>
+                    <p class="text-slate-400 font-light text-sm leading-loose">
+                        Comprensión de la configuración energética y conductual única de los individuos para potenciar el flujo de trabajo, reducir la fricción y optimizar la toma de decisiones.
+                    </p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <span class="text-gold text-lg font-serif mb-4 block">02</span>
+                    <h4 class="text-xl font-semibold mb-4 text-white">Ontología</h4>
+                    <p class="text-slate-400 font-light text-sm leading-loose">
+                        El poder del lenguaje como generador de realidades. Entrenamiento en conversaciones asertivas que desbloquean conflictos, abren nuevas posibilidades de acción y alinean equipos.
+                    </p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <span class="text-gold text-lg font-serif mb-4 block">03</span>
+                    <h4 class="text-xl font-semibold mb-4 text-white">Cultura</h4>
+                    <p class="text-slate-400 font-light text-sm leading-loose">
+                        Diseño e implementación de dinámicas para la evolución organizacional. Fomentar entornos integradores que basen su desarrollo en el aprendizaje continuo y el bienestar sistémico.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Multimedia Section (Video) -->
-    <section id="multimedia" class="py-32 bg-slate-100 relative">
-        <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center">
+    <section class="py-32 bg-white editorial-border">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
             <div class="reveal mb-16">
-                <span class="text-pink-brand font-bold uppercase tracking-widest text-sm italic">YO SOY LA LUZ</span>
-                <h2 class="text-4xl font-bold text-violet-brand mt-4">Nuestra Experiencia</h2>
+                <h2 class="text-3xl font-serif text-accent mb-4">Conferencias & Intervenciones</h2>
+                <div class="w-12 h-[1px] bg-gold mx-auto"></div>
             </div>
             
             <div class="reveal">
-                <!-- Video Incrustado correctamente -->
                 <div class="video-wrapper">
                     <iframe 
                         src="https://www.youtube.com/embed/MYHfRJDRIjI?si=6m6J5m2yG_QzV8-X" 
-                        title="Juan Martín Ortiz - Consciencia Humana" 
+                        title="Juan Martín Ortiz - Conferencia" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>
                 </div>
-                <p class="mt-10 text-slate-500 italic text-lg max-w-2xl mx-auto">
-                    "La verdadera libertad se conquista cuando nos atrevemos a mirar hacia adentro."
+                <p class="mt-8 text-slate-500 font-serif italic text-lg opacity-80">
+                    "Elevando el nivel de consciencia en nuestras organizaciones."
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Metodología Consciencia Humana -->
-    <section class="py-32 bg-violet-brand text-white relative">
-        <div class="iam-mantra text-white" style="bottom: 10%; right: 5%; opacity: 0.1;">YO SOY LA VICTORIA</div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="p-12 bg-white/5 rounded-[3rem] border border-white/10 reveal text-center">
-                    <div class="w-16 h-16 rounded-full bg-pink-brand/20 flex items-center justify-center mx-auto mb-8 text-pink-brand">
-                        <i class="fa-solid fa-leaf text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">Diseño Humano</h4>
-                    <p class="text-violet-100/70">Tu configuración única para fluir en la vida y el trabajo.</p>
-                </div>
-                <div class="p-12 bg-white/5 rounded-[3rem] border border-white/10 reveal text-center" style="transition-delay: 0.2s;">
-                    <div class="w-16 h-16 rounded-full bg-yellow-warm/20 flex items-center justify-center mx-auto mb-8 text-yellow-warm">
-                        <i class="fa-solid fa-sun text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">Ontología</h4>
-                    <p class="text-violet-100/70">Conversaciones que abren mundos y transforman realidades.</p>
-                </div>
-                <div class="p-12 bg-white/5 rounded-[3rem] border border-white/10 reveal text-center" style="transition-delay: 0.4s;">
-                    <div class="w-16 h-16 rounded-full bg-green-emerald/20 flex items-center justify-center mx-auto mb-8 text-green-emerald">
-                        <i class="fa-solid fa-users text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-4">Cultura</h4>
-                    <p class="text-violet-100/70">Evolución organizacional desde el aprendizaje humano.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer / Contacto -->
-    <footer id="contacto" class="py-32 bg-white text-center relative">
-        <div class="iam-mantra" style="top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.02; font-size: 3rem;">YO SOY</div>
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-5xl font-bold text-violet-brand mb-10">¿Hablamos?</h2>
+    <footer id="contacto" class="py-32 bg-slate-50 editorial-border text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-4xl font-serif text-accent mb-6">Iniciar una Conversación</h2>
+            <p class="text-slate-600 mb-12 font-light">Para conferencias, consultoría corporativa o procesos de coaching ejecutivo, por favor complete el formulario a continuación.</p>
             
-            <div id="contact-form" class="space-y-6 text-left mb-20">
+            <div id="contact-form" class="space-y-6 text-left mb-16 bg-white p-8 border border-slate-100 shadow-sm">
                 <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Nombre" class="w-full bg-slate-100 rounded-2xl px-8 py-5 focus:outline-none focus:ring-2 focus:ring-pink-brand/30 transition-all">
-                    <input type="email" placeholder="Email" class="w-full bg-slate-100 rounded-2xl px-8 py-5 focus:outline-none focus:ring-2 focus:ring-pink-brand/30 transition-all">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Nombre</label>
+                        <input type="text" class="w-full border-b border-slate-200 py-3 focus:outline-none focus:border-gold transition-colors bg-transparent text-slate-800" placeholder="Ej. Ana Pérez">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Email</label>
+                        <input type="email" class="w-full border-b border-slate-200 py-3 focus:outline-none focus:border-gold transition-colors bg-transparent text-slate-800" placeholder="ana@empresa.com">
+                    </div>
                 </div>
-                <textarea rows="4" placeholder="¿En qué puedo acompañarte?" class="w-full bg-slate-100 rounded-2xl px-8 py-5 focus:outline-none focus:ring-2 focus:ring-pink-brand/30 transition-all"></textarea>
-                <button onclick="enviarMensaje()" class="w-full cta-button py-6 rounded-2xl font-bold text-lg shadow-xl">Enviar Mensaje</button>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Asunto o Consulta</label>
+                    <textarea rows="3" class="w-full border-b border-slate-200 py-3 focus:outline-none focus:border-gold transition-colors bg-transparent text-slate-800 resize-none" placeholder="¿Cómo podemos colaborar?"></textarea>
+                </div>
+                <button onclick="enviarMensaje()" class="w-full cta-button py-4 text-sm mt-4">Enviar Consulta</button>
             </div>
             
-            <div id="exito" class="hidden py-16 animate-bounce">
-                <div class="w-20 h-20 bg-green-emerald text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fa-solid fa-check text-3xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-violet-brand">¡Recibido con Gratitud!</h3>
+            <div id="exito" class="hidden py-12 mb-8 bg-white border border-green-100">
+                <span class="text-green-600 block mb-4"><i class="fa-solid fa-check-circle text-3xl"></i></span>
+                <h3 class="text-xl font-serif text-accent mb-2">Mensaje Recibido</h3>
+                <p class="text-slate-500 text-sm">Me pondré en contacto a la brevedad.</p>
             </div>
 
-            <div class="pt-16 border-t border-slate-100 flex flex-col items-center">
-                <div class="flex space-x-12 mb-10 text-3xl text-violet-brand">
-                    <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank" class="hover:text-pink-brand transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://wa.me/5491162091548" target="_blank" class="hover:text-pink-brand transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            <div class="pt-16 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-6">
+                <div class="flex space-x-6 text-xl text-slate-400">
+                    <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank" class="hover:text-accent transition-colors duration-300"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://wa.me/5491162091548" target="_blank" class="hover:text-accent transition-colors duration-300"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
-                <p class="text-slate-400 text-xs tracking-[0.5em] uppercase font-bold">Consciencia Humana · Buenos Aires</p>
+                <div class="text-slate-400 text-xs tracking-widest uppercase">
+                    &copy; 2026 Juan Martín Ortiz
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Animaciones de revelado al scroll
-        const observer = new IntersectionObserver((entries) => {
+        // Reveal elements on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Unobserve to animate only once
+                }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Gestión del formulario
+        // Form handling simulation
         function enviarMensaje() {
-            document.getElementById('contact-form').style.display = 'none';
-            document.getElementById('exito').classList.remove('hidden');
+            const btn = document.querySelector('#contact-form button');
+            btn.innerHTML = 'Enviando...';
+            btn.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                document.getElementById('contact-form').style.display = 'none';
+                document.getElementById('exito').classList.remove('hidden');
+            }, 800);
         }
+
+        // Navbar appearance on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
     </script>
 </body>
 </html>
