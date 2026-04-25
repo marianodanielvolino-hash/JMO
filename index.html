@@ -3,425 +3,1241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juan Martín Ortiz | Consciencia Humana</title>
+    <meta name="description" content="Juan Martín Ortiz — Coach Ejecutivo y Conferencista Internacional. Experto en transformación organizacional, liderazgo consciente y cultura de alto rendimiento.">
+    <meta property="og:title" content="Juan Martín Ortiz | Coach Ejecutivo & Conferencista Internacional">
+    <meta property="og:description" content="Transformando líderes y organizaciones a través de metodologías de alto impacto.">
+    <meta property="og:type" content="website">
+    <title>Juan Martín Ortiz | Coach Ejecutivo & Conferencista Internacional</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Playfair Display for authoritative headings, Inter for high legibility body text -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-body: #FDFBF7; /* Off-white, editorial feel */
-            --text-primary: #1C1C1E; /* Rich charcoal */
-            --text-secondary: #4B5563; /* Slate 600 */
-            --accent-dark: #0F172A; /* Slate 900 / Navy */
-            --accent-gold: #B49358; /* Muted elegant gold */
+            --bg-body: #FDFBF7;
+            --bg-dark: #07101E;
+            --text-primary: #1C1C1E;
+            --text-secondary: #4B5563;
+            --accent-dark: #0F172A;
+            --gold: #C4993A;
+            --gold-light: rgba(196, 153, 58, 0.12);
         }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-primary);
             overflow-x: hidden;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
-        h1, h2, h3, h4, .font-serif { 
-            font-family: 'Playfair Display', serif; 
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+        /* ─── NAVIGATION ─── */
+        #navbar {
+            transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+        #navbar .nav-link {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            transition: color 0.3s;
+        }
+        #navbar .nav-link:hover { color: rgba(255,255,255,1); }
+        #navbar .nav-logo-text { color: white; transition: color 0.4s; }
+        #navbar .nav-sub { color: rgba(255,255,255,0.3); transition: color 0.4s; }
+        #navbar .hamburger { color: white; transition: color 0.4s; }
+
+        #navbar.scrolled {
+            background: rgba(253,251,247,0.97);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0,0,0,0.07);
+            box-shadow: 0 2px 24px rgba(0,0,0,0.05);
+        }
+        #navbar.scrolled .nav-link { color: rgba(15,23,42,0.55); }
+        #navbar.scrolled .nav-link:hover { color: #0F172A; }
+        #navbar.scrolled .nav-logo-text { color: #0F172A; }
+        #navbar.scrolled .nav-sub { color: rgba(15,23,42,0.35); }
+        #navbar.scrolled .hamburger { color: #0F172A; }
+
+        /* ─── HERO ─── */
+        .hero { background: var(--bg-dark); min-height: 100vh; position: relative; overflow: hidden; }
+        .hero::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 65% 50%, rgba(196,153,58,0.07) 0%, transparent 65%);
+            pointer-events: none;
         }
 
-        .text-accent { color: var(--accent-dark); }
-        .text-gold { color: var(--accent-gold); }
-        .bg-accent { background-color: var(--accent-dark); }
-        .bg-gold { background-color: var(--accent-gold); }
-        
-        /* Clean Navigation */
-        .solid-nav {
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(15, 23, 42, 0.05);
-        }
-
-        .reveal {
+        /* ─── REVEAL ANIMATIONS ─── */
+        .reveal, .reveal-left, .reveal-right {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .reveal { transform: translateY(28px); }
+        .reveal-left { transform: translateX(-32px); }
+        .reveal-right { transform: translateX(32px); }
+        .reveal.active, .reveal-left.active, .reveal-right.active {
+            opacity: 1; transform: translate(0);
         }
 
-        .cta-button {
-            background-color: var(--accent-dark);
-            color: white;
+        /* ─── BUTTONS ─── */
+        .btn-gold {
+            background: var(--gold); color: #07101E;
+            font-weight: 600; font-size: 0.72rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            display: inline-flex; align-items: center; justify-content: center;
             transition: all 0.3s ease;
-            font-weight: 500;
-            letter-spacing: 0.05em;
         }
-        .cta-button:hover {
-            background-color: var(--text-primary);
+        .btn-gold:hover {
+            background: #d4a93f;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -10px rgba(15, 23, 42, 0.3);
+            box-shadow: 0 14px 36px -8px rgba(196,153,58,0.45);
         }
-        
-        .cta-button-outline {
-            border: 1px solid var(--accent-dark);
-            color: var(--accent-dark);
+        .btn-dark {
+            background: var(--accent-dark); color: white;
+            font-weight: 500; font-size: 0.72rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            display: inline-flex; align-items: center; justify-content: center;
             transition: all 0.3s ease;
         }
-        .cta-button-outline:hover {
-            background-color: var(--accent-dark);
-            color: white;
+        .btn-dark:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -8px rgba(15,23,42,0.35);
+        }
+        .btn-outline-white {
+            border: 1.5px solid rgba(255,255,255,0.3); color: white;
+            font-weight: 500; font-size: 0.72rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-white:hover { border-color: var(--gold); color: var(--gold); }
+        .btn-outline-dark {
+            border: 1.5px solid var(--accent-dark); color: var(--accent-dark);
+            font-weight: 500; font-size: 0.72rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-dark:hover { background: var(--accent-dark); color: white; }
+
+        /* ─── MARQUEE ─── */
+        .marquee-wrap { overflow: hidden; white-space: nowrap; }
+        .marquee-inner {
+            display: inline-flex; align-items: center; gap: 72px;
+            animation: ticker 28s linear infinite;
+        }
+        .marquee-inner:hover { animation-play-state: paused; }
+        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ─── CARDS ─── */
+        .service-card {
+            border: 1px solid rgba(0,0,0,0.07);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            position: relative; overflow: hidden;
+        }
+        .service-card::after {
+            content: ''; position: absolute;
+            bottom: 0; left: 0; right: 0; height: 3px;
+            background: var(--gold); transform: scaleX(0);
+            transition: transform 0.35s ease;
+        }
+        .service-card:hover { transform: translateY(-7px); box-shadow: 0 24px 64px -16px rgba(0,0,0,0.1); border-color: rgba(196,153,58,0.3); }
+        .service-card:hover::after { transform: scaleX(1); }
+
+        .topic-card {
+            border-left: 3px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+        .topic-card:hover { background: white; box-shadow: 0 8px 40px -10px rgba(0,0,0,0.09); transform: translateX(6px); }
+
+        .testimonial-card { border: 1px solid rgba(0,0,0,0.06); transition: all 0.3s ease; }
+        .testimonial-card:hover { border-color: rgba(196,153,58,0.25); box-shadow: 0 12px 44px -10px rgba(0,0,0,0.08); }
+
+        .article-card { border-bottom: 2px solid transparent; transition: all 0.3s ease; }
+        .article-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 16px 48px -12px rgba(0,0,0,0.09); }
+
+        /* ─── VIDEO ─── */
+        .vid-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .vid-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+        /* ─── STAT BAR ─── */
+        .stat-item { position: relative; }
+        .stat-item + .stat-item::before {
+            content: ''; position: absolute;
+            left: 0; top: 20%; bottom: 20%;
+            width: 1px; background: rgba(255,255,255,0.08);
         }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            background: #f1f1f1;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        /* ─── DIVIDERS ─── */
+        .gold-line { width: 44px; height: 2px; background: var(--gold); }
+        .gold-line-c { width: 44px; height: 2px; background: var(--gold); margin: 0 auto; }
+
+        /* ─── SECTION TAG ─── */
+        .stag {
+            font-size: 0.65rem; letter-spacing: 0.24em;
+            font-weight: 700; text-transform: uppercase;
+            color: var(--gold);
         }
 
-        .editorial-border {
-            border-top: 1px solid rgba(0,0,0,0.1);
+        /* ─── MOBILE MENU ─── */
+        #mobileMenu {
+            display: none; position: fixed; inset: 0;
+            background: var(--bg-dark); z-index: 998;
+            flex-direction: column; align-items: center; justify-content: center; gap: 36px;
         }
+        #mobileMenu.open { display: flex; }
+
+        /* ─── FORM ─── */
+        .finput {
+            width: 100%; background: transparent;
+            border-bottom: 1px solid rgba(0,0,0,0.13);
+            padding: 12px 0; font-size: 0.9rem; color: var(--text-primary);
+            transition: border-color 0.3s;
+            -webkit-appearance: none; appearance: none;
+        }
+        .finput:focus { outline: none; border-color: var(--gold); }
+        .finput::placeholder { color: #b0b7c3; }
+
+        /* ─── SCROLL INDICATOR ─── */
+        .scroll-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: var(--gold);
+            animation: sdot 2s ease-in-out infinite;
+        }
+        @keyframes sdot {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(9px); opacity: 0.25; }
+        }
+
+        /* ─── GRID PATTERN ─── */
+        .grid-pattern {
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(196,153,58,0.35) 59px, rgba(196,153,58,0.35) 60px),
+                repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(196,153,58,0.35) 59px, rgba(196,153,58,0.35) 60px);
+        }
+
+        /* ─── IMAGE ─── */
+        .img-pro { filter: grayscale(15%) contrast(1.05); transition: filter 0.8s; }
+        .img-pro:hover { filter: grayscale(0) contrast(1); }
     </style>
 </head>
-<body class="antialiased font-light selection:bg-slate-200 selection:text-slate-900">
+<body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 solid-nav transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0">
-                    <a href="#inicio" class="text-2xl font-serif font-semibold tracking-wide text-accent">
-                        Juan Martín Ortiz<span class="text-gold">.</span>
+<!-- ══════════════════════════════════════
+     NAVEGACIÓN
+══════════════════════════════════════ -->
+<nav id="navbar" class="fixed w-full z-50 py-1">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex justify-between items-center h-20">
+
+            <!-- Logo -->
+            <a href="#inicio" class="flex items-center gap-3 z-10">
+                <span class="nav-logo-text text-xl serif font-bold tracking-wide">
+                    JMO<span style="color:var(--gold)">.</span>
+                </span>
+                <span class="nav-sub hidden sm:block text-xs tracking-widest uppercase font-light border-l border-white/20 pl-3">
+                    Coach Ejecutivo
+                </span>
+            </a>
+
+            <!-- Desktop links -->
+            <div class="hidden lg:flex items-center gap-9">
+                <a href="#sobre-mi"    class="nav-link">Sobre Mí</a>
+                <a href="#servicios"   class="nav-link">Servicios</a>
+                <a href="#conferencias" class="nav-link">Conferencias</a>
+                <a href="#trayectoria" class="nav-link">Trayectoria</a>
+                <a href="#escritos"    class="nav-link">Ideas</a>
+                <a href="#contacto" class="btn-gold px-6 py-3 ml-2">
+                    Contratar <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Hamburger -->
+            <button class="hamburger lg:hidden p-2 z-[999]" onclick="toggleMenu()" aria-label="Menú">
+                <i id="hamburgerIcon" class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu">
+    <button onclick="toggleMenu()" class="absolute top-6 right-6 text-white/40 hover:text-white text-2xl">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    <span class="serif text-3xl text-white mb-4">JMO<span style="color:var(--gold)">.</span></span>
+    <a href="#sobre-mi"     onclick="toggleMenu()" class="text-lg tracking-widest uppercase text-white/65 hover:text-white transition-colors">Sobre Mí</a>
+    <a href="#servicios"    onclick="toggleMenu()" class="text-lg tracking-widest uppercase text-white/65 hover:text-white transition-colors">Servicios</a>
+    <a href="#conferencias" onclick="toggleMenu()" class="text-lg tracking-widest uppercase text-white/65 hover:text-white transition-colors">Conferencias</a>
+    <a href="#trayectoria"  onclick="toggleMenu()" class="text-lg tracking-widest uppercase text-white/65 hover:text-white transition-colors">Trayectoria</a>
+    <a href="#escritos"     onclick="toggleMenu()" class="text-lg tracking-widest uppercase text-white/65 hover:text-white transition-colors">Ideas</a>
+    <a href="#contacto"     onclick="toggleMenu()" class="btn-gold px-10 py-4 mt-4">Contratar</a>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="inicio" class="hero">
+
+    <!-- Background image -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=1920"
+             alt="" class="w-full h-full object-cover opacity-15">
+        <div class="absolute inset-0"
+             style="background: linear-gradient(105deg, #07101E 48%, rgba(7,16,30,0.75) 75%, rgba(7,16,30,0.45) 100%);">
+        </div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 min-h-screen flex flex-col justify-center">
+        <div class="lg:flex lg:items-center lg:gap-20 pt-32 pb-20">
+
+            <!-- Copy -->
+            <div class="lg:w-3/5">
+                <div class="flex items-center gap-3 mb-8 reveal">
+                    <span class="inline-block w-10 h-0.5" style="background:var(--gold)"></span>
+                    <span class="stag">Coach Ejecutivo &amp; Conferencista Internacional</span>
+                </div>
+
+                <h1 class="text-5xl sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem] serif text-white leading-[1.05] mb-8 reveal"
+                    style="transition-delay:.08s">
+                    Despertá el<br>
+                    <em class="not-italic" style="color:var(--gold)">liderazgo</em><br>
+                    que ya existe.
+                </h1>
+
+                <p class="text-lg text-white/55 leading-relaxed mb-10 max-w-lg font-light reveal"
+                   style="transition-delay:.16s">
+                    Acompaño líderes y organizaciones a transformar su cultura, elevar la consciencia colectiva y generar resultados extraordinarios. Ingeniero de formación, coach de corazón.
+                </p>
+
+                <div class="flex flex-wrap gap-4 reveal" style="transition-delay:.24s">
+                    <a href="#contacto" class="btn-gold px-8 py-4">
+                        Contratar para conferencia <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                    <a href="#sobre-mi" class="btn-outline-white px-8 py-4">
+                        Conocer más
                     </a>
                 </div>
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="#inicio" class="text-sm tracking-widest uppercase hover:text-gold transition-colors text-slate-600">Inicio</a>
-                    <a href="#trayectoria" class="text-sm tracking-widest uppercase hover:text-gold transition-colors text-slate-600">Trayectoria</a>
-                    <a href="#enfoque" class="text-sm tracking-widest uppercase hover:text-gold transition-colors text-slate-600">Enfoque</a>
-                    <a href="#contacto" class="text-sm tracking-widest uppercase text-accent font-semibold flex items-center gap-2 hover:text-gold transition-colors">
-                        Contacto <i class="fa-solid fa-arrow-right text-xs"></i>
+            </div>
+
+            <!-- Portrait -->
+            <div class="hidden lg:block lg:w-2/5 reveal-right" style="transition-delay:.18s">
+                <div class="relative">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800"
+                             alt="Juan Martín Ortiz" class="w-full h-full object-cover img-pro">
+                    </div>
+                    <!-- Frame -->
+                    <div class="absolute -bottom-5 -right-5 w-full h-full border pointer-events-none"
+                         style="border-color:rgba(196,153,58,0.22)"></div>
+                    <!-- Floating badge -->
+                    <div class="absolute -left-9 bottom-16 bg-white p-5 shadow-2xl">
+                        <div class="text-3xl serif font-bold" style="color:var(--accent-dark)">15+</div>
+                        <div class="text-xs text-slate-400 uppercase tracking-widest mt-0.5">Años de impacto</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats row -->
+        <div id="stats-row"
+             class="grid grid-cols-2 lg:grid-cols-4 gap-0 border-t pt-10 pb-6 reveal"
+             style="border-color:rgba(255,255,255,0.08); transition-delay:.32s">
+            <div class="stat-item text-center lg:text-left py-4 px-4 lg:px-8">
+                <div class="text-3xl lg:text-4xl serif text-white font-semibold">
+                    <span class="counter" data-target="500">0</span>+
+                </div>
+                <div class="text-xs text-white/35 uppercase tracking-widest mt-2">Personas impactadas</div>
+            </div>
+            <div class="stat-item text-center lg:text-left py-4 px-4 lg:px-8">
+                <div class="text-3xl lg:text-4xl serif text-white font-semibold">
+                    <span class="counter" data-target="50">0</span>+
+                </div>
+                <div class="text-xs text-white/35 uppercase tracking-widest mt-2">Empresas</div>
+            </div>
+            <div class="stat-item text-center lg:text-left py-4 px-4 lg:px-8">
+                <div class="text-3xl lg:text-4xl serif text-white font-semibold">
+                    <span class="counter" data-target="80">0</span>+
+                </div>
+                <div class="text-xs text-white/35 uppercase tracking-widest mt-2">Conferencias</div>
+            </div>
+            <div class="stat-item text-center lg:text-left py-4 px-4 lg:px-8">
+                <div class="text-3xl lg:text-4xl serif text-white font-semibold">
+                    <span class="counter" data-target="5">0</span>
+                </div>
+                <div class="text-xs text-white/35 uppercase tracking-widest mt-2">Países</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        <span class="text-white text-xs tracking-widest uppercase">Scroll</span>
+        <div class="scroll-dot"></div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     MARQUEE — EMPRESAS
+══════════════════════════════════════ -->
+<section class="py-12 bg-white border-y border-slate-100">
+    <p class="text-center text-xs tracking-widest uppercase text-slate-300 mb-7 reveal">Organizaciones donde he generado impacto</p>
+    <div class="marquee-wrap">
+        <div class="marquee-inner">
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">PepsiCo</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Rexam</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Gobierno CABA</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Multinacionales Fortune 500</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Sector Tecnológico</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Sector Público</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Industria del Consumo</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <!-- duplicate for seamless loop -->
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">PepsiCo</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Rexam</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Gobierno CABA</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Multinacionales Fortune 500</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Sector Tecnológico</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Sector Público</span>
+            <span class="text-slate-200 text-xs">◆</span>
+            <span class="text-slate-400 font-semibold text-sm tracking-wider">Industria del Consumo</span>
+            <span class="text-slate-200 text-xs">◆</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SOBRE MÍ
+══════════════════════════════════════ -->
+<section id="sobre-mi" class="py-32" style="background:var(--bg-body)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
+
+            <!-- Portrait -->
+            <div class="reveal-left mb-16 lg:mb-0">
+                <div class="relative">
+                    <div class="aspect-[4/5] overflow-hidden bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
+                             alt="Juan Martín Ortiz" class="w-full h-full object-cover img-pro">
+                    </div>
+                    <div class="absolute -top-6 -left-6 w-24 h-24 border" style="border-color:rgba(196,153,58,0.28)"></div>
+                    <div class="absolute -bottom-6 -right-6 w-36 h-36" style="background:var(--gold-light)"></div>
+                    <!-- Quote overlay -->
+                    <div class="absolute -right-10 top-1/3 hidden lg:block p-7 max-w-xs shadow-2xl"
+                         style="background:var(--bg-dark)">
+                        <i class="fa-solid fa-quote-left text-xl mb-3 block" style="color:rgba(196,153,58,0.3)"></i>
+                        <p class="text-white/70 text-sm font-light italic leading-relaxed">
+                            "La verdadera libertad se conquista cuando nos atrevemos a mirar hacia adentro."
+                        </p>
+                        <span class="block mt-3 text-xs tracking-widest uppercase" style="color:var(--gold)">— JMO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copy -->
+            <div class="reveal-right">
+                <div class="stag mb-4">Sobre Juan Martín</div>
+                <h2 class="text-4xl lg:text-5xl serif leading-snug mb-6" style="color:var(--accent-dark)">
+                    Un puente entre<br>
+                    la <em class="not-italic font-normal text-slate-500">ingeniería</em><br>
+                    y el ser humano.
+                </h2>
+                <div class="gold-line mb-8"></div>
+                <p class="text-slate-600 leading-relaxed mb-5 font-light">
+                    Con formación en ingeniería y más de 15 años liderando equipos de alta complejidad en el mundo corporativo y el sector público, Juan Martín construyó su vocación en la intersección exacta entre la excelencia técnica y el desarrollo humano profundo.
+                </p>
+                <p class="text-slate-600 leading-relaxed mb-10 font-light">
+                    Hoy es coach ejecutivo, facilitador y conferencista internacional, acompañando a líderes y organizaciones a transformar su cultura, elevar la consciencia colectiva y alcanzar resultados que sostienen el tiempo.
+                </p>
+
+                <div class="grid grid-cols-2 gap-5 mb-10">
+                    <div class="bg-white p-5 border border-slate-100">
+                        <i class="fa-solid fa-graduation-cap mb-3 text-lg block" style="color:var(--gold)"></i>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Formación</div>
+                        <div class="text-sm font-medium" style="color:var(--accent-dark)">Ingeniería + Coaching Ontológico</div>
+                    </div>
+                    <div class="bg-white p-5 border border-slate-100">
+                        <i class="fa-solid fa-location-dot mb-3 text-lg block" style="color:var(--gold)"></i>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Sede</div>
+                        <div class="text-sm font-medium" style="color:var(--accent-dark)">Buenos Aires · Global</div>
+                    </div>
+                    <div class="bg-white p-5 border border-slate-100">
+                        <i class="fa-solid fa-language mb-3 text-lg block" style="color:var(--gold)"></i>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Idiomas</div>
+                        <div class="text-sm font-medium" style="color:var(--accent-dark)">Español · Inglés</div>
+                    </div>
+                    <div class="bg-white p-5 border border-slate-100">
+                        <i class="fa-solid fa-industry mb-3 text-lg block" style="color:var(--gold)"></i>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-1">Sectores</div>
+                        <div class="text-sm font-medium" style="color:var(--accent-dark)">Corporativo · Tech · Público</div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 flex-wrap">
+                    <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank"
+                       class="btn-dark px-6 py-3 gap-2">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="#contacto" class="btn-outline-dark px-6 py-3">
+                        Agendar sesión
                     </a>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <header id="inicio" class="relative pt-32 pb-20 lg:pb-32 lg:pt-48 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-            <div class="lg:flex lg:items-center gap-16 lg:gap-24">
-                <div class="lg:w-5/12 reveal mt-8 lg:mt-0 order-2 lg:order-1">
-                    <p class="text-gold font-semibold uppercase tracking-[0.2em] text-xs mb-6 inline-block">Consciencia Humana</p>
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif text-accent leading-tight mb-8">
-                        Liderazgo <br>
-                        <span class="italic text-slate-600 font-normal">con propósito</span> y resultados.
-                    </h1>
-                    <p class="text-lg text-slate-600 mb-10 leading-relaxed font-light">
-                        Ingeniero de formación, coach de corazón. Acompaño procesos de transformación humana y organizacional combinando la precisión analítica con la profundidad del ser.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#contacto" class="cta-button px-8 py-4 text-sm uppercase tracking-widest text-center">Agendar Sesión</a>
-                        <a href="#enfoque" class="cta-button-outline px-8 py-4 text-sm uppercase tracking-widest text-center">Conoce mi enfoque</a>
-                    </div>
+
+<!-- ══════════════════════════════════════
+     SERVICIOS
+══════════════════════════════════════ -->
+<section id="servicios" class="py-32 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-20 reveal">
+            <div class="stag mb-4">¿Qué ofrezco?</div>
+            <h2 class="text-4xl lg:text-5xl serif mb-6" style="color:var(--accent-dark)">Mis Servicios</h2>
+            <div class="gold-line-c mb-6"></div>
+            <p class="text-slate-500 font-light max-w-lg mx-auto leading-relaxed">
+                Cada intervención es diseñada a medida, combinando rigor metodológico con una profunda escucha del sistema humano en cuestión.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Coaching -->
+            <div class="service-card p-10 reveal" style="background:var(--bg-body)">
+                <div class="w-12 h-12 flex items-center justify-center mb-8"
+                     style="background:var(--gold-light)">
+                    <i class="fa-solid fa-user-tie text-lg" style="color:var(--gold)"></i>
                 </div>
-                
-                <div class="lg:w-7/12 order-1 lg:order-2 reveal">
-                    <div class="relative">
-                        <!-- Elegant Author Portrait Aspect -->
-                        <div class="aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/3] overflow-hidden bg-slate-100">
-                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1200" 
-                                 alt="Juan Martín Ortiz" 
-                                 class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-                                 onerror="this.src='https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=1200'">
+                <h3 class="text-2xl serif mb-4" style="color:var(--accent-dark)">Coaching Ejecutivo</h3>
+                <p class="text-slate-500 font-light text-sm leading-relaxed mb-8">
+                    Procesos individuales y grupales para líderes que buscan llevar su impacto al siguiente nivel. Combinando Diseño Humano, Ontología y Cultura.
+                </p>
+                <ul class="space-y-2.5 mb-8">
+                    <li class="flex items-start gap-3 text-sm text-slate-600">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Sesiones individuales (1:1)
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-slate-600">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Programas de team coaching
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-slate-600">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Acompañamiento en procesos de cambio
+                    </li>
+                </ul>
+                <a href="#contacto" class="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold transition-colors"
+                   style="color:var(--accent-dark)"
+                   onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                    Consultar <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Conferencias (featured) -->
+            <div class="service-card p-10 reveal" style="background:var(--bg-dark); transition-delay:.1s">
+                <div class="w-12 h-12 flex items-center justify-center mb-8"
+                     style="background:rgba(196,153,58,0.18)">
+                    <i class="fa-solid fa-microphone text-lg" style="color:var(--gold)"></i>
+                </div>
+                <h3 class="text-2xl serif text-white mb-4">Conferencias</h3>
+                <p class="font-light text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,0.48)">
+                    Keynotes para eventos corporativos, congresos y programas de liderazgo. Disertaciones que combinan profundidad conceptual con impacto emocional inmediato.
+                </p>
+                <ul class="space-y-2.5 mb-8">
+                    <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.65)">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Keynotes para eventos corporativos
+                    </li>
+                    <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.65)">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Conferencias magistrales
+                    </li>
+                    <li class="flex items-start gap-3 text-sm" style="color:rgba(255,255,255,0.65)">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Paneles y mesas de diálogo
+                    </li>
+                </ul>
+                <a href="#contacto" class="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold transition-colors"
+                   style="color:var(--gold)"
+                   onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--gold)'">
+                    Contratar ahora <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Talleres -->
+            <div class="service-card p-10 reveal" style="background:var(--bg-body); transition-delay:.2s">
+                <div class="w-12 h-12 flex items-center justify-center mb-8"
+                     style="background:var(--gold-light)">
+                    <i class="fa-solid fa-users text-lg" style="color:var(--gold)"></i>
+                </div>
+                <h3 class="text-2xl serif mb-4" style="color:var(--accent-dark)">Talleres & Workshops</h3>
+                <p class="text-slate-500 font-light text-sm leading-relaxed mb-8">
+                    Intervenciones experienciales para equipos que buscan resultados concretos. Desde half-day intensivos hasta programas de varios meses.
+                </p>
+                <ul class="space-y-2.5 mb-8">
+                    <li class="flex items-start gap-3 text-sm text-slate-600">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Half-day y full-day intensivos
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-slate-600">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Programas de transformación cultural
+                    </li>
+                    <li class="flex items-start gap-3 text-sm text-slate-600">
+                        <i class="fa-solid fa-check text-xs mt-1" style="color:var(--gold)"></i>
+                        Retiros de liderazgo
+                    </li>
+                </ul>
+                <a href="#contacto" class="flex items-center gap-2 text-xs uppercase tracking-widest font-semibold transition-colors"
+                   style="color:var(--accent-dark)"
+                   onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                    Consultar <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONFERENCIAS — TEMAS + KIT
+══════════════════════════════════════ -->
+<section id="conferencias" class="py-32 border-t border-slate-100" style="background:var(--bg-body)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-start">
+
+            <!-- Topics -->
+            <div class="mb-16 lg:mb-0">
+                <div class="stag mb-4 reveal">Hablar en tu evento</div>
+                <h2 class="text-4xl lg:text-5xl serif leading-snug mb-6 reveal" style="color:var(--accent-dark); transition-delay:.06s">
+                    Temas de<br><em class="not-italic font-normal text-slate-500">Conferencia</em>
+                </h2>
+                <div class="gold-line mb-8 reveal" style="transition-delay:.1s"></div>
+                <p class="text-slate-600 font-light leading-relaxed mb-12 reveal" style="transition-delay:.14s">
+                    Cada conferencia es una experiencia transformadora. Juan Martín combina marcos teóricos rigurosos con historias reales, generando momentos de insight profundo y compromiso genuino con el cambio.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="topic-card p-6 reveal" style="background:rgba(0,0,0,0.02); transition-delay:.18s">
+                        <div class="flex items-start gap-4">
+                            <span class="serif text-lg font-semibold flex-shrink-0" style="color:var(--gold)">01</span>
+                            <div>
+                                <h4 class="font-semibold mb-2" style="color:var(--accent-dark)">Liderazgo Consciente en la Era del Cambio</h4>
+                                <p class="text-sm text-slate-500 font-light leading-relaxed">Líderes que integran autoconocimiento y precisión técnica generan culturas resilientes y resultados sostenibles.</p>
+                            </div>
                         </div>
-                        <!-- Subtle decorative block -->
-                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gold/10 -z-10"></div>
+                    </div>
+                    <div class="topic-card p-6 reveal" style="background:rgba(0,0,0,0.02); transition-delay:.22s">
+                        <div class="flex items-start gap-4">
+                            <span class="serif text-lg font-semibold flex-shrink-0" style="color:var(--gold)">02</span>
+                            <div>
+                                <h4 class="font-semibold mb-2" style="color:var(--accent-dark)">Cultura Organizacional como Ventaja Competitiva</h4>
+                                <p class="text-sm text-slate-500 font-light leading-relaxed">Las organizaciones que diseñan su cultura conscientemente superan en performance, retención e innovación.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topic-card p-6 reveal" style="background:rgba(0,0,0,0.02); transition-delay:.26s">
+                        <div class="flex items-start gap-4">
+                            <span class="serif text-lg font-semibold flex-shrink-0" style="color:var(--gold)">03</span>
+                            <div>
+                                <h4 class="font-semibold mb-2" style="color:var(--accent-dark)">El Poder de las Conversaciones</h4>
+                                <p class="text-sm text-slate-500 font-light leading-relaxed">Ontología del lenguaje aplicada: cómo lo que decimos (y callamos) construye o destruye equipos de alto rendimiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topic-card p-6 reveal" style="background:rgba(0,0,0,0.02); transition-delay:.3s">
+                        <div class="flex items-start gap-4">
+                            <span class="serif text-lg font-semibold flex-shrink-0" style="color:var(--gold)">04</span>
+                            <div>
+                                <h4 class="font-semibold mb-2" style="color:var(--accent-dark)">Diseño Humano en los Equipos</h4>
+                                <p class="text-sm text-slate-500 font-light leading-relaxed">Comprender la configuración energética única de cada persona para construir equipos que fluyan e innoven.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
 
-    <!-- Quote Section -->
-    <section class="py-24 bg-white editorial-border">
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <i class="fa-solid fa-quote-left text-3xl text-slate-200 mb-6"></i>
-            <h2 class="text-2xl md:text-4xl font-serif text-slate-800 leading-snug italic mb-8">
-                "La verdadera libertad en las organizaciones y en la vida se conquista cuando nos atrevemos a mirar hacia adentro."
-            </h2>
-            <p class="text-sm font-semibold tracking-widest uppercase text-slate-500">— Juan Martín Ortiz</p>
-        </div>
-    </section>
-
-    <!-- Trayectoria (Experience) -->
-    <section id="trayectoria" class="py-32 bg-[var(--bg-body)] editorial-border">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-20 reveal">
-                <h2 class="text-4xl lg:text-5xl font-serif text-accent mb-6">Experiencia Integrada</h2>
-                <div class="w-12 h-[1px] bg-gold mx-auto"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
-                <div class="reveal">
-                    <div class="text-gold mb-6">
-                        <i class="fa-solid fa-building text-2xl"></i>
+            <!-- Kit + Video -->
+            <div class="reveal-right">
+                <!-- CTA Box -->
+                <div class="p-10 mb-8" style="background:var(--bg-dark)">
+                    <div class="stag mb-4">Kit del Conferencista</div>
+                    <h3 class="text-3xl serif text-white mb-4">¿Querés a JMO en tu evento?</h3>
+                    <p class="font-light text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,0.45)">
+                        Disponible para conferencias corporativas, congresos, programas de liderazgo y retiros. Presencial o remoto. Argentina y el mundo.
+                    </p>
+                    <div class="space-y-3 mb-8 text-sm" style="color:rgba(255,255,255,0.65)">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-clock text-xs" style="color:var(--gold)"></i>
+                            Formatos: 30min · 60min · 90min · Half-day
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-globe text-xs" style="color:var(--gold)"></i>
+                            Modalidad: Presencial · Online · Híbrido
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-users text-xs" style="color:var(--gold)"></i>
+                            Audiencia: 20 a 2.000+ personas
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-serif text-accent mb-2">Mundo Corporativo</h3>
-                    <p class="text-sm text-slate-400 font-semibold tracking-widest uppercase mb-6">PepsiCo & Rexam</p>
-                    <p class="text-slate-600 leading-relaxed">
-                        Liderazgo estratégico en Supply Chain para el Cono Sur. Gestión de equipos multidisciplinarios de más de 350 personas, optimizando operaciones de alta complejidad logística y productiva mediante enfoques basados en el rendimiento humano y la eficiencia técnica.
-                    </p>
+                    <a href="#contacto" class="btn-gold w-full py-4">
+                        Consultar disponibilidad <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
                 </div>
 
-                <div class="reveal" style="transition-delay: 0.1s;">
-                    <div class="text-gold mb-6">
-                        <i class="fa-solid fa-institution text-2xl"></i>
+                <!-- Video preview -->
+                <div class="bg-white border border-slate-100 p-6">
+                    <p class="text-xs uppercase tracking-widest text-slate-400 mb-4 font-semibold">Ver en acción</p>
+                    <div class="vid-wrap">
+                        <iframe src="https://www.youtube.com/embed/MYHfRJDRIjI?si=6m6J5m2yG_QzV8-X"
+                                title="Juan Martín Ortiz — Conferencia"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                     </div>
-                    <h3 class="text-2xl font-serif text-accent mb-2">Gestión Pública</h3>
-                    <p class="text-sm text-slate-400 font-semibold tracking-widest uppercase mb-6">Gobierno de la Ciudad de Buenos Aires</p>
-                    <p class="text-slate-600 leading-relaxed">
-                        Innovación aplicada a la atención y servicio vecinal. Liderazgo en la transformación de la experiencia ciudadana integrando procesos ágiles, tecnología aplicada y, fundamentalmente, humanización del servicio público a gran escala.
+                    <p class="mt-4 text-slate-500 serif italic text-sm">
+                        "Elevando el nivel de consciencia en nuestras organizaciones"
                     </p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Metodología / Enfoque (Methodology) -->
-    <section id="enfoque" class="py-32 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="lg:flex lg:justify-between lg:items-end mb-20 reveal">
-                <div class="lg:w-1/2">
-                    <h2 class="text-4xl lg:text-5xl font-serif mb-6">Enfoque de Trabajo</h2>
-                    <p class="text-slate-400 text-lg font-light leading-relaxed">
-                        Tres pilares fundamentales sobre los que estructuro cada intervención, combinando herramientas analíticas con metodologías del desarrollo del potencial humano.
-                    </p>
+
+<!-- ══════════════════════════════════════
+     TRAYECTORIA
+══════════════════════════════════════ -->
+<section id="trayectoria" class="py-32 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-20 reveal">
+            <div class="stag mb-4">Credenciales</div>
+            <h2 class="text-4xl lg:text-5xl serif mb-6" style="color:var(--accent-dark)">Trayectoria & Experiencia</h2>
+            <div class="gold-line-c mb-6"></div>
+            <p class="text-slate-500 font-light max-w-lg mx-auto leading-relaxed">
+                No hablo de teoría. Hablo desde la experiencia de haber liderado organizaciones reales, con personas reales, en contextos de alta presión y complejidad.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+            <div class="p-10 border border-slate-100 reveal group hover:border-amber-200 transition-colors"
+                 style="background:var(--bg-body)">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:var(--gold-light)">
+                        <i class="fa-solid fa-building text-lg" style="color:var(--gold)"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl serif" style="color:var(--accent-dark)">Mundo Corporativo</h3>
+                        <p class="text-xs text-slate-400 font-semibold tracking-widest uppercase mt-0.5">PepsiCo & Rexam · Cono Sur</p>
+                    </div>
                 </div>
-                <div class="hidden lg:block">
-                    <div class="w-24 h-[1px] bg-slate-600"></div>
+                <p class="text-slate-600 leading-relaxed font-light mb-6">
+                    Liderazgo estratégico en Supply Chain para el Cono Sur. Gestión de equipos multidisciplinarios de más de 350 personas, optimizando operaciones de alta complejidad logística mediante enfoques basados en el rendimiento humano y la eficiencia técnica.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs px-3 py-1 font-medium" style="background:var(--gold-light);color:var(--gold)">Supply Chain</span>
+                    <span class="text-xs px-3 py-1 font-medium" style="background:var(--gold-light);color:var(--gold)">Liderazgo Estratégico</span>
+                    <span class="text-xs px-3 py-1 font-medium" style="background:var(--gold-light);color:var(--gold)">350+ personas</span>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-12 border-t border-slate-700 pt-16">
-                <div class="reveal">
-                    <span class="text-gold text-lg font-serif mb-4 block">01</span>
-                    <h4 class="text-xl font-semibold mb-4 text-white">Diseño Humano</h4>
-                    <p class="text-slate-400 font-light text-sm leading-loose">
-                        Comprensión de la configuración energética y conductual única de los individuos para potenciar el flujo de trabajo, reducir la fricción y optimizar la toma de decisiones.
-                    </p>
+            <div class="p-10 border border-slate-100 reveal group hover:border-amber-200 transition-colors"
+                 style="background:var(--bg-body); transition-delay:.1s">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background:var(--gold-light)">
+                        <i class="fa-solid fa-landmark text-lg" style="color:var(--gold)"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl serif" style="color:var(--accent-dark)">Gestión Pública</h3>
+                        <p class="text-xs text-slate-400 font-semibold tracking-widest uppercase mt-0.5">Gobierno de la Ciudad de Buenos Aires</p>
+                    </div>
                 </div>
-                <div class="reveal" style="transition-delay: 0.1s;">
-                    <span class="text-gold text-lg font-serif mb-4 block">02</span>
-                    <h4 class="text-xl font-semibold mb-4 text-white">Ontología</h4>
-                    <p class="text-slate-400 font-light text-sm leading-loose">
-                        El poder del lenguaje como generador de realidades. Entrenamiento en conversaciones asertivas que desbloquean conflictos, abren nuevas posibilidades de acción y alinean equipos.
-                    </p>
-                </div>
-                <div class="reveal" style="transition-delay: 0.2s;">
-                    <span class="text-gold text-lg font-serif mb-4 block">03</span>
-                    <h4 class="text-xl font-semibold mb-4 text-white">Cultura</h4>
-                    <p class="text-slate-400 font-light text-sm leading-loose">
-                        Diseño e implementación de dinámicas para la evolución organizacional. Fomentar entornos integradores que basen su desarrollo en el aprendizaje continuo y el bienestar sistémico.
-                    </p>
+                <p class="text-slate-600 leading-relaxed font-light mb-6">
+                    Innovación en atención y servicio vecinal. Liderazgo en la transformación de la experiencia ciudadana integrando procesos ágiles, tecnología aplicada y humanización del servicio público a gran escala.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs px-3 py-1 font-medium" style="background:var(--gold-light);color:var(--gold)">Transformación Ágil</span>
+                    <span class="text-xs px-3 py-1 font-medium" style="background:var(--gold-light);color:var(--gold)">Experiencia Ciudadana</span>
+                    <span class="text-xs px-3 py-1 font-medium" style="background:var(--gold-light);color:var(--gold)">Innovación Pública</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Escritos / Publicaciones -->
-    <section id="escritos" class="py-32 bg-[var(--bg-body)] editorial-border">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="lg:flex lg:justify-between lg:items-end mb-20 reveal">
-                <div class="lg:w-2/3">
-                    <h2 class="text-4xl lg:text-5xl font-serif mb-6 text-accent">Ideas & Reflexiones</h2>
-                    <p class="text-slate-600 text-lg font-light leading-relaxed">
-                        Ensayos y artículos sobre consciencia organizacional, liderazgo ontológico y la transformación de la condición humana en el entorno de trabajo.
-                    </p>
-                </div>
-                <div class="hidden lg:flex lg:w-1/3 justify-end pb-2">
-                    <a href="#contacto" class="text-sm tracking-widest uppercase text-accent font-semibold flex items-center gap-2 hover:text-gold transition-colors">
-                        Ver todos <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-            </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Articulo 1 -->
-                <article class="bg-white p-10 border border-slate-100 hover:border-gold/50 transition-colors reveal group">
-                    <span class="text-gold text-xs font-semibold uppercase tracking-widest mb-4 block">Ensayo</span>
-                    <h3 class="text-2xl font-serif text-accent mb-4 group-hover:text-gold transition-colors leading-snug">La crisis de sentido en el liderazgo corporativo</h3>
-                    <p class="text-slate-500 font-light mb-6 text-sm leading-relaxed">Por qué las métricas tradicionales ya no alcanzan para sostener el compromiso de los equipos modernos.</p>
-                    <a href="#contacto" class="text-xs uppercase tracking-widest text-accent font-semibold flex items-center gap-2 group-hover:text-gold transition-colors">
-                        Leer artículo <i class="fa-solid fa-long-arrow-right"></i>
-                    </a>
-                </article>
-                <!-- Articulo 2 -->
-                <article class="bg-white p-10 border border-slate-100 hover:border-gold/50 transition-colors reveal group" style="transition-delay: 0.1s;">
-                    <span class="text-gold text-xs font-semibold uppercase tracking-widest mb-4 block">Perspectiva</span>
-                    <h3 class="text-2xl font-serif text-accent mb-4 group-hover:text-gold transition-colors leading-snug">El impacto oculto de la cultura del agotamiento</h3>
-                    <p class="text-slate-500 font-light mb-6 text-sm leading-relaxed">Analizando los costos invisibles del burnout corporativo en la eficiencia y creatividad estructural.</p>
-                    <a href="#contacto" class="text-xs uppercase tracking-widest text-accent font-semibold flex items-center gap-2 group-hover:text-gold transition-colors">
-                        Leer artículo <i class="fa-solid fa-long-arrow-right"></i>
-                    </a>
-                </article>
-                <!-- Articulo 3 -->
-                <article class="bg-white p-10 border border-slate-100 hover:border-gold/50 transition-colors reveal group" style="transition-delay: 0.2s;">
-                    <span class="text-gold text-xs font-semibold uppercase tracking-widest mb-4 block">Desarrollo Humano</span>
-                    <h3 class="text-2xl font-serif text-accent mb-4 group-hover:text-gold transition-colors leading-snug">Ontología para equipos de alto rendimiento</h3>
-                    <p class="text-slate-500 font-light mb-6 text-sm leading-relaxed">Cómo el rediseño consciente de las conversaciones determina el techo operativo de cualquier organización.</p>
-                    <a href="#contacto" class="text-xs uppercase tracking-widest text-accent font-semibold flex items-center gap-2 group-hover:text-gold transition-colors">
-                        Leer artículo <i class="fa-solid fa-long-arrow-right"></i>
-                    </a>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonios / Endorsements -->
-    <section class="py-32 bg-slate-50 editorial-border">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-            <h2 class="text-3xl font-serif text-accent mb-16 reveal">Voces de la Industria</h2>
-            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <div class="bg-white p-12 border border-slate-100 reveal hover:shadow-lg transition-shadow duration-300">
-                    <i class="fa-solid fa-quote-left text-2xl text-gold/30 mb-6"></i>
-                    <p class="text-slate-600 font-light italic leading-relaxed mb-8">
-                        "La intervención de Juan Martín en nuestra cadena de suministro no solo mejoró las métricas logísticas, sino que transformó por completo cómo nuestros líderes gestionan la presión y se comunican."
-                    </p>
-                    <h5 class="font-semibold text-accent uppercase tracking-widest text-xs mb-1">Director de Operaciones</h5>
-                    <span class="text-gold text-xs uppercase tracking-widest">Multinacional de Consumo</span>
-                </div>
-                <div class="bg-white p-12 border border-slate-100 reveal hover:shadow-lg transition-shadow duration-300" style="transition-delay: 0.1s;">
-                    <i class="fa-solid fa-quote-left text-2xl text-gold/30 mb-6"></i>
-                    <p class="text-slate-600 font-light italic leading-relaxed mb-8">
-                        "Un abordaje brillante. Su capacidad para decodificar la cultura corporativa y traducirla en planes de acción profundos generó un antes y un después en la cohesión de nuestro directorio regional."
-                    </p>
-                    <h5 class="font-semibold text-accent uppercase tracking-widest text-xs mb-1">CEO Regional</h5>
-                    <span class="text-gold text-xs uppercase tracking-widest">Sector Tecnológico</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Multimedia Section (Video) -->
-    <section class="py-32 bg-white editorial-border">
-        <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-            <div class="reveal mb-16">
-                <h2 class="text-3xl font-serif text-accent mb-4">Conferencias & Intervenciones</h2>
-                <div class="w-12 h-[1px] bg-gold mx-auto"></div>
-            </div>
-            
-            <div class="reveal">
-                <div class="video-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/MYHfRJDRIjI?si=6m6J5m2yG_QzV8-X" 
-                        title="Juan Martín Ortiz - Conferencia" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p class="mt-8 text-slate-500 font-serif italic text-lg opacity-80">
-                    "Elevando el nivel de consciencia en nuestras organizaciones."
+<!-- ══════════════════════════════════════
+     ENFOQUE / METODOLOGÍA
+══════════════════════════════════════ -->
+<section id="enfoque" class="py-32 text-white" style="background:var(--bg-dark)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="lg:flex lg:justify-between lg:items-end mb-20 reveal">
+            <div class="lg:w-1/2">
+                <div class="stag mb-4">Metodología</div>
+                <h2 class="text-4xl lg:text-5xl serif mb-6">Enfoque de Trabajo</h2>
+                <p class="font-light text-lg leading-relaxed" style="color:rgba(255,255,255,0.45)">
+                    Tres pilares fundamentales. Un método probado. Resultados que transforman organizaciones desde adentro.
                 </p>
             </div>
+            <div class="hidden lg:block w-20 h-px" style="background:rgba(255,255,255,0.15)"></div>
         </div>
-    </section>
 
-    <!-- Footer / Contacto -->
-    <footer id="contacto" class="py-32 bg-slate-50 editorial-border text-center">
-        <div class="max-w-2xl mx-auto px-6">
-            <h2 class="text-4xl font-serif text-accent mb-6">Iniciar una Conversación</h2>
-            <p class="text-slate-600 mb-12 font-light">Para conferencias, consultoría corporativa o procesos de coaching ejecutivo, por favor complete el formulario a continuación.</p>
-            
-            <div id="contact-form" class="space-y-6 text-left mb-16 bg-white p-8 border border-slate-100 shadow-sm">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Nombre</label>
-                        <input type="text" class="w-full border-b border-slate-200 py-3 focus:outline-none focus:border-gold transition-colors bg-transparent text-slate-800" placeholder="Ej. Ana Pérez">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Email</label>
-                        <input type="email" class="w-full border-b border-slate-200 py-3 focus:outline-none focus:border-gold transition-colors bg-transparent text-slate-800" placeholder="ana@empresa.com">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Asunto o Consulta</label>
-                    <textarea rows="3" class="w-full border-b border-slate-200 py-3 focus:outline-none focus:border-gold transition-colors bg-transparent text-slate-800 resize-none" placeholder="¿Cómo podemos colaborar?"></textarea>
-                </div>
-                <button onclick="enviarMensaje()" class="w-full cta-button py-4 text-sm mt-4">Enviar Consulta</button>
+        <div class="grid md:grid-cols-3 border-t" style="border-color:rgba(255,255,255,0.08)">
+            <div class="reveal pt-16 pr-0 md:pr-12 pb-12 border-b md:border-b-0 md:border-r"
+                 style="border-color:rgba(255,255,255,0.08)">
+                <span class="text-4xl serif font-bold mb-8 block" style="color:var(--gold)">01</span>
+                <h4 class="text-2xl serif font-semibold mb-5 text-white">Diseño Humano</h4>
+                <p class="font-light text-sm leading-loose" style="color:rgba(255,255,255,0.45)">
+                    Comprensión de la configuración energética y conductual única de los individuos para potenciar el flujo de trabajo, reducir la fricción y optimizar la toma de decisiones.
+                </p>
+                <div class="w-8 h-0.5 mt-8" style="background:rgba(196,153,58,0.4)"></div>
             </div>
-            
-            <div id="exito" class="hidden py-12 mb-8 bg-white border border-green-100">
-                <span class="text-green-600 block mb-4"><i class="fa-solid fa-check-circle text-3xl"></i></span>
-                <h3 class="text-xl font-serif text-accent mb-2">Mensaje Recibido</h3>
-                <p class="text-slate-500 text-sm">Me pondré en contacto a la brevedad.</p>
+            <div class="reveal pt-16 px-0 md:px-12 pb-12 border-b md:border-b-0 md:border-r"
+                 style="border-color:rgba(255,255,255,0.08); transition-delay:.1s">
+                <span class="text-4xl serif font-bold mb-8 block" style="color:var(--gold)">02</span>
+                <h4 class="text-2xl serif font-semibold mb-5 text-white">Ontología</h4>
+                <p class="font-light text-sm leading-loose" style="color:rgba(255,255,255,0.45)">
+                    El poder del lenguaje como generador de realidades. Entrenamiento en conversaciones asertivas que desbloquean conflictos, abren posibilidades de acción y alinean equipos.
+                </p>
+                <div class="w-8 h-0.5 mt-8" style="background:rgba(196,153,58,0.4)"></div>
             </div>
-
-            <div class="pt-16 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-6">
-                <div class="flex space-x-6 text-xl text-slate-400">
-                    <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank" class="hover:text-accent transition-colors duration-300"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://wa.me/5491162091548" target="_blank" class="hover:text-accent transition-colors duration-300"><i class="fa-brands fa-whatsapp"></i></a>
-                </div>
-                <div class="text-slate-400 text-xs tracking-widest uppercase">
-                    &copy; 2026 Juan Martín Ortiz
-                </div>
+            <div class="reveal pt-16 pl-0 md:pl-12 pb-12" style="transition-delay:.2s">
+                <span class="text-4xl serif font-bold mb-8 block" style="color:var(--gold)">03</span>
+                <h4 class="text-2xl serif font-semibold mb-5 text-white">Cultura</h4>
+                <p class="font-light text-sm leading-loose" style="color:rgba(255,255,255,0.45)">
+                    Diseño e implementación de dinámicas para la evolución organizacional. Entornos integradores que basan su desarrollo en el aprendizaje continuo y el bienestar sistémico.
+                </p>
+                <div class="w-8 h-0.5 mt-8" style="background:rgba(196,153,58,0.4)"></div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Reveal elements on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Unobserve to animate only once
-                }
-            });
-        }, observerOptions);
+<!-- ══════════════════════════════════════
+     IDEAS & REFLEXIONES
+══════════════════════════════════════ -->
+<section id="escritos" class="py-32 border-t border-slate-100" style="background:var(--bg-body)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="lg:flex lg:justify-between lg:items-end mb-20 reveal">
+            <div class="lg:w-2/3">
+                <div class="stag mb-4">Pensamiento</div>
+                <h2 class="text-4xl lg:text-5xl serif mb-6" style="color:var(--accent-dark)">Ideas & Reflexiones</h2>
+                <p class="text-slate-600 text-lg font-light leading-relaxed">
+                    Ensayos sobre consciencia organizacional, liderazgo ontológico y la transformación de la condición humana en el trabajo.
+                </p>
+            </div>
+            <div class="hidden lg:flex lg:w-1/3 justify-end pb-2">
+                <a href="#contacto" class="text-xs tracking-widest uppercase font-semibold flex items-center gap-2 transition-colors"
+                   style="color:var(--accent-dark)"
+                   onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                    Ver todos <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <article class="article-card bg-white p-10 border border-slate-100 reveal group cursor-pointer">
+                <div class="stag mb-4">Ensayo</div>
+                <h3 class="text-2xl serif mb-4 transition-colors leading-snug group-hover:text-amber-700"
+                    style="color:var(--accent-dark)">
+                    La crisis de sentido en el liderazgo corporativo
+                </h3>
+                <p class="text-slate-500 font-light mb-6 text-sm leading-relaxed">
+                    Por qué las métricas tradicionales ya no alcanzan para sostener el compromiso de los equipos modernos.
+                </p>
+                <a href="#contacto" class="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 transition-colors"
+                   style="color:var(--accent-dark)"
+                   onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                    Leer artículo <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </article>
 
-        // Form handling simulation
-        function enviarMensaje() {
-            const btn = document.querySelector('#contact-form button');
-            btn.innerHTML = 'Enviando...';
-            btn.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                document.getElementById('contact-form').style.display = 'none';
-                document.getElementById('exito').classList.remove('hidden');
-            }, 800);
-        }
+            <article class="article-card bg-white p-10 border border-slate-100 reveal group cursor-pointer" style="transition-delay:.1s">
+                <div class="stag mb-4">Perspectiva</div>
+                <h3 class="text-2xl serif mb-4 transition-colors leading-snug group-hover:text-amber-700"
+                    style="color:var(--accent-dark)">
+                    El impacto oculto de la cultura del agotamiento
+                </h3>
+                <p class="text-slate-500 font-light mb-6 text-sm leading-relaxed">
+                    Los costos invisibles del burnout corporativo en la eficiencia y creatividad estructural de las organizaciones.
+                </p>
+                <a href="#contacto" class="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 transition-colors"
+                   style="color:var(--accent-dark)"
+                   onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                    Leer artículo <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </article>
 
-        // Navbar appearance on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            } else {
-                nav.style.boxShadow = 'none';
+            <article class="article-card bg-white p-10 border border-slate-100 reveal group cursor-pointer" style="transition-delay:.2s">
+                <div class="stag mb-4">Desarrollo Humano</div>
+                <h3 class="text-2xl serif mb-4 transition-colors leading-snug group-hover:text-amber-700"
+                    style="color:var(--accent-dark)">
+                    Ontología para equipos de alto rendimiento
+                </h3>
+                <p class="text-slate-500 font-light mb-6 text-sm leading-relaxed">
+                    Cómo el rediseño consciente de las conversaciones determina el techo operativo de cualquier organización.
+                </p>
+                <a href="#contacto" class="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 transition-colors"
+                   style="color:var(--accent-dark)"
+                   onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                    Leer artículo <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </article>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     TESTIMONIOS
+══════════════════════════════════════ -->
+<section id="testimonios" class="py-32 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-20 reveal">
+            <div class="stag mb-4">Impacto Real</div>
+            <h2 class="text-4xl lg:text-5xl serif mb-6" style="color:var(--accent-dark)">Voces de la Industria</h2>
+            <div class="gold-line-c"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="testimonial-card p-10 reveal" style="background:var(--bg-body)">
+                <i class="fa-solid fa-quote-left text-2xl mb-6 block" style="color:rgba(196,153,58,0.2)"></i>
+                <p class="text-slate-600 font-light italic leading-relaxed mb-8 text-lg">
+                    "La intervención de Juan Martín en nuestra cadena de suministro no solo mejoró las métricas logísticas, sino que transformó por completo cómo nuestros líderes gestionan la presión y se comunican."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 flex items-center justify-center serif font-bold text-sm flex-shrink-0"
+                         style="background:var(--gold-light);color:var(--gold)">DO</div>
+                    <div>
+                        <div class="font-semibold text-xs uppercase tracking-widest" style="color:var(--accent-dark)">Director de Operaciones</div>
+                        <div class="text-xs uppercase tracking-widest mt-0.5" style="color:var(--gold)">Multinacional de Consumo</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card p-10 reveal" style="background:var(--bg-body); transition-delay:.1s">
+                <i class="fa-solid fa-quote-left text-2xl mb-6 block" style="color:rgba(196,153,58,0.2)"></i>
+                <p class="text-slate-600 font-light italic leading-relaxed mb-8 text-lg">
+                    "Un abordaje brillante. Su capacidad para decodificar la cultura corporativa y traducirla en planes de acción generó un antes y un después en la cohesión de nuestro directorio regional."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 flex items-center justify-center serif font-bold text-sm flex-shrink-0"
+                         style="background:var(--gold-light);color:var(--gold)">CR</div>
+                    <div>
+                        <div class="font-semibold text-xs uppercase tracking-widest" style="color:var(--accent-dark)">CEO Regional</div>
+                        <div class="text-xs uppercase tracking-widest mt-0.5" style="color:var(--gold)">Sector Tecnológico</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card p-10 reveal" style="background:var(--bg-body)">
+                <i class="fa-solid fa-quote-left text-2xl mb-6 block" style="color:rgba(196,153,58,0.2)"></i>
+                <p class="text-slate-600 font-light italic leading-relaxed mb-8 text-lg">
+                    "Lo que más me sorprendió fue la velocidad del cambio. En tres meses, nuestro equipo directivo tenía conversaciones completamente distintas. Más honestas, más estratégicas, más humanas."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 flex items-center justify-center serif font-bold text-sm flex-shrink-0"
+                         style="background:var(--gold-light);color:var(--gold)">GH</div>
+                    <div>
+                        <div class="font-semibold text-xs uppercase tracking-widest" style="color:var(--accent-dark)">Gerente de RRHH</div>
+                        <div class="text-xs uppercase tracking-widest mt-0.5" style="color:var(--gold)">Sector Financiero</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card p-10 reveal" style="background:var(--bg-body); transition-delay:.1s">
+                <i class="fa-solid fa-quote-left text-2xl mb-6 block" style="color:rgba(196,153,58,0.2)"></i>
+                <p class="text-slate-600 font-light italic leading-relaxed mb-8 text-lg">
+                    "La conferencia en nuestro congreso anual fue el momento más impactante del evento. JMO tiene la rara habilidad de conectar con 500 personas como si le hablara a cada uno individualmente."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 flex items-center justify-center serif font-bold text-sm flex-shrink-0"
+                         style="background:var(--gold-light);color:var(--gold)">DP</div>
+                    <div>
+                        <div class="font-semibold text-xs uppercase tracking-widest" style="color:var(--accent-dark)">Director de Programa</div>
+                        <div class="text-xs uppercase tracking-widest mt-0.5" style="color:var(--gold)">Congreso Internacional de Liderazgo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CTA BANNER
+══════════════════════════════════════ -->
+<section class="py-32 relative overflow-hidden" style="background:var(--bg-dark)">
+    <!-- Grid background -->
+    <div class="absolute inset-0 grid-pattern opacity-[0.04]"></div>
+    <!-- Gold glow -->
+    <div class="absolute inset-0"
+         style="background: radial-gradient(ellipse at center, rgba(196,153,58,0.07) 0%, transparent 70%)">
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+        <div class="stag mb-6">Siguiente paso</div>
+        <h2 class="text-4xl lg:text-6xl serif text-white leading-tight mb-8">
+            Tu próxima conferencia<br>
+            merece a <em class="not-italic" style="color:var(--gold)">JMO</em>.
+        </h2>
+        <p class="font-light text-lg leading-relaxed mb-14 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.45)">
+            Conversemos sobre tu evento, programa o proceso de transformación. Sin compromiso, sin formularios interminables.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#contacto" class="btn-gold px-10 py-5">
+                Iniciar conversación <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+            </a>
+            <a href="https://wa.me/5491162091548" target="_blank" class="btn-outline-white px-10 py-5 gap-2">
+                <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp directo
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTACTO / FOOTER
+══════════════════════════════════════ -->
+<footer id="contacto" class="py-32 border-t border-slate-100" style="background:var(--bg-body)">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-24 items-start">
+
+            <!-- Info -->
+            <div class="mb-16 lg:mb-0">
+                <div class="stag mb-4 reveal">Contacto</div>
+                <h2 class="text-4xl lg:text-5xl serif leading-snug mb-6 reveal"
+                    style="color:var(--accent-dark); transition-delay:.06s">
+                    Iniciemos<br>una <em class="not-italic font-normal text-slate-500">conversación.</em>
+                </h2>
+                <div class="gold-line mb-8 reveal" style="transition-delay:.1s"></div>
+                <p class="text-slate-600 font-light leading-relaxed mb-12 text-lg reveal" style="transition-delay:.14s">
+                    Para conferencias, consultoría corporativa, programas de coaching ejecutivo o cualquier colaboración, estoy disponible y me entusiasma escuchar tu proyecto.
+                </p>
+
+                <div class="space-y-6 reveal" style="transition-delay:.18s">
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 flex items-center justify-center flex-shrink-0"
+                             style="background:var(--gold-light)">
+                            <i class="fa-brands fa-linkedin" style="color:var(--gold)"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-0.5">LinkedIn</div>
+                            <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank"
+                               class="text-sm font-medium transition-colors"
+                               style="color:var(--accent-dark)"
+                               onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                                Juan Martín Ortiz
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 flex items-center justify-center flex-shrink-0"
+                             style="background:var(--gold-light)">
+                            <i class="fa-brands fa-whatsapp" style="color:var(--gold)"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-0.5">WhatsApp</div>
+                            <a href="https://wa.me/5491162091548" target="_blank"
+                               class="text-sm font-medium transition-colors"
+                               style="color:var(--accent-dark)"
+                               onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--accent-dark)'">
+                                +54 9 11 6209-1548
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-11 h-11 flex items-center justify-center flex-shrink-0"
+                             style="background:var(--gold-light)">
+                            <i class="fa-solid fa-location-dot" style="color:var(--gold)"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-widest text-slate-400 font-semibold mb-0.5">Ubicación</div>
+                            <span class="text-sm font-medium" style="color:var(--accent-dark)">
+                                Buenos Aires, Argentina · Disponible globalmente
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="reveal-right">
+                <div id="contact-form" class="bg-white p-10 border border-slate-100 shadow-sm">
+                    <h3 class="text-2xl serif mb-8" style="color:var(--accent-dark)">Enviar consulta</h3>
+                    <div class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Nombre</label>
+                                <input type="text" class="finput" placeholder="Tu nombre">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Email</label>
+                                <input type="email" class="finput" placeholder="tu@empresa.com">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Tipo de consulta</label>
+                            <select class="finput" style="color:#4B5563">
+                                <option value="">Seleccionar...</option>
+                                <option>Conferencia para evento</option>
+                                <option>Coaching Ejecutivo</option>
+                                <option>Taller / Workshop</option>
+                                <option>Consultoría corporativa</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Mensaje</label>
+                            <textarea rows="4" class="finput resize-none"
+                                      placeholder="Contame sobre tu proyecto o evento..."></textarea>
+                        </div>
+                        <button onclick="enviarMensaje()"
+                                class="btn-dark w-full py-4 gap-2">
+                            Enviar consulta <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="exito" class="hidden bg-white p-12 border border-green-100 text-center">
+                    <div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-green-50">
+                        <i class="fa-solid fa-check text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl serif mb-3" style="color:var(--accent-dark)">¡Mensaje recibido!</h3>
+                    <p class="text-slate-500 font-light">Me pondré en contacto a la brevedad. Mientras tanto, conectemos en LinkedIn.</p>
+                    <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank"
+                       class="btn-dark inline-flex px-6 py-3 mt-6 gap-2">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer bar -->
+        <div class="mt-24 pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="text-2xl serif" style="color:var(--accent-dark)">
+                JMO<span style="color:var(--gold)">.</span>
+            </span>
+            <span class="text-xs tracking-widest uppercase text-slate-400">
+                &copy; 2026 Juan Martín Ortiz · Coach Ejecutivo &amp; Conferencista
+            </span>
+            <div class="flex gap-5 text-lg text-slate-400">
+                <a href="https://www.linkedin.com/in/juan-martin-ortiz-7548b05" target="_blank"
+                   class="transition-colors hover:text-slate-700"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://wa.me/5491162091548" target="_blank"
+                   class="transition-colors hover:text-slate-700"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+    /* ── REVEAL ON SCROLL ── */
+    const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('active');
+                revealObs.unobserve(e.target);
             }
         });
-    </script>
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+        .forEach(el => revealObs.observe(el));
+
+
+    /* ── COUNTER ANIMATION ── */
+    const counterObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            e.target.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.dataset.target;
+                const duration = 1800;
+                const steps = Math.ceil(duration / 16);
+                let step = 0;
+                const timer = setInterval(() => {
+                    step++;
+                    counter.textContent = Math.floor(target * (step / steps));
+                    if (step >= steps) { counter.textContent = target; clearInterval(timer); }
+                }, 16);
+            });
+            counterObs.unobserve(e.target);
+        });
+    }, { threshold: 0.4 });
+
+    const statsRow = document.getElementById('stats-row');
+    if (statsRow) counterObs.observe(statsRow);
+
+
+    /* ── NAVBAR ── */
+    const navbar = document.getElementById('navbar');
+    const heroSection = document.getElementById('inicio');
+
+    function updateNavbar() {
+        const threshold = heroSection.offsetHeight - 90;
+        if (window.scrollY > threshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+
+
+    /* ── MOBILE MENU ── */
+    function toggleMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const icon = document.getElementById('hamburgerIcon');
+        const open = menu.classList.toggle('open');
+        icon.className = open ? 'fa-solid fa-xmark text-xl' : 'fa-solid fa-bars text-xl';
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+
+    /* ── FORM ── */
+    function enviarMensaje() {
+        const btn = document.querySelector('#contact-form button[onclick]');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Enviando...';
+        btn.disabled = true;
+        btn.style.opacity = '0.65';
+        setTimeout(() => {
+            document.getElementById('contact-form').style.display = 'none';
+            document.getElementById('exito').classList.remove('hidden');
+        }, 1000);
+    }
+</script>
 </body>
 </html>
